@@ -1,0 +1,232 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+</head>
+<body>
+  <script>
+          function SaveAsFile(t,f,m) {
+            try {
+                var b = new Blob([t],{type:m});
+                saveAs(b, f);
+            } catch (e) {
+                window.open("data:"+m+"," + encodeURIComponent(t), '_blank','');
+            }
+        }
+    document.onsubmit = function () {
+        let title = document.getElementById("title")
+        let name = document.getElementById("name")
+        let rows = document.getElementById("rows")
+        let perm = document.getElementById("perm")
+        let refdelay = document.getElementById("refresh-delay")
+        let opensound = document.getElementById("sound-on-open")
+        let paneltype = document.getElementsByClassName("panel-type")
+        let permmsg = document.getElementById("permission")
+        let outsidecmds = document.getElementsByName("OCommand")
+        let inputmsg = document.getElementById("input")
+        
+let finaltext =
+
+`panels:\n`+
+`  ${name.value}:\n`+
+`    title: "${title.value}"\n`+
+`    rows: ${rows.value}\n`;
+if (perm==undefined) {
+    finaltext=finaltext.concat(`\n    perm: default`)
+} else {
+    finaltext=finaltext.concat(`\n    perm: ${perm.value}`)
+}
+if (refdelay.value!=undefined) finaltext=finaltext.concat(`\n    refresh-delay: ${refdelay.value}`);
+if (opensound.value!=undefined) finaltext=finaltext.concat(`\n    sound-on-open: ${opensound.value}`);
+if (paneltype.length!=0) {
+    finaltext=finaltext.concat(`\n    panelType:`);
+    for (let i = 0; i < paneltype.length;i++) {
+        finaltext=finaltext.concat(`\n    - ${paneltype[i].value}`);
+    }
+} 
+if (outsidecmds.length!=0) {
+    finaltext=finaltext.concat(`\n    outside-commands:`);
+    for (let i = 0; i < outsidecmds.length;i++) {
+        finaltext=finaltext.concat(`\n    - ${outsidecmds[i].value}`);
+    }
+} 
+if (outsidecmds.length!=0) {
+    finaltext=finaltext.concat(`\n    outside-commands:`);
+    for (let i = 0; i < outsidecmds.length;i++) {
+        finaltext=finaltext.concat(`\n    - ${outsidecmds[i].value}`);
+    }
+} 
+window.alert(finaltext)
+SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
+    
+    }
+
+
+    function createNewOC() {
+      var element = document.getElementById("Ocommands");
+      element.insertAdjacentHTML(
+        "beforeend",
+        '<div class="row"></div><div class="input-field col s6"><input id="command" name="OCommand"><label for="command">Outside Command</label></div>'
+      );
+    }
+    function lol() {
+      var element = document.getElementsByClassName("collapsible")[0];
+      element.insertAdjacentHTML(
+        "beforeend",
+        '<li><div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div><div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div></li>'
+      );
+    }
+  </script>
+  <a class="waves-effect waves-light btn" onclick="lol()">Create item</a>
+
+  <input type="Button" value="Create item" onclick="lol()" />
+
+  <form style="margin-left: 15%; margin-right: 15%">
+    <div id="settings">
+      <h1>Settings</h1>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="name" required class="validate" type="text" /><label
+            for="name"
+            >Panel Name</label
+          >
+        </div>
+        <div class="input-field col s6">
+          <input id="title" required type="text" class="validate" /><label
+            for="title"
+            >Panel Title</label
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s1">
+          <input id="rows" required class="validate" type="text" /><label
+            for="rows"
+            >Rows</label
+          >
+        </div>
+        <div class="input-field col s2">
+          <input id="refresh-delay" type="text" class="validate" /><label
+            for="refresh-delay"
+            >Refresh Delay</label
+          >
+        </div>
+        <div class="input-field col s6">
+          <input id="sound-on-open" type="text" class="validate" /><label
+            for="sound-on-open"
+            >Open Sound</label
+          >
+        </div>
+        <div class="input-field col s3">
+            <input id="perm" type="text" class="validate" /><label
+              for="perm"
+              >Open Perm</label
+            >
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <h6>Panel Type(s)</h6>
+          <br />
+          <p style="display: flex; justify-content: space-evenly">
+            <label>
+              <input type="checkbox" value="static" class="panel-type"/>
+              <span>static</span>
+            </label>
+            <label>
+              <input type="checkbox" value="nocommand" class="panel-type"/>
+              <span>nocommand</span>
+            </label>
+            <label>
+              <input type="checkbox" value="nocommandregister" class="panel-type"/>
+              <span>nocommandregister</span>
+            </label>
+            <label>
+              <input type="checkbox" value="unmovable" class="panel-type"/>
+              <span>unmovable</span>
+            </label>
+            <label>
+              <input type="checkbox" value="unclosable" class="panel-type"/>
+              <span>unclosable</span>
+            </label>
+          </p>
+        </div>
+      </div>
+      <h6>Custom Messages</h6>
+      <div class="row">
+        <div class="input-field col s6">
+          <textarea id="permission" class="materialize-textarea"></textarea
+          ><label for="permission">Permission</label>
+        </div>
+        <div class="row"></div>
+        <div class="input-field col s6">
+          <textarea id="input" class="materialize-textarea"></textarea
+          ><label for="input">Permission</label>
+        </div>
+      </div>
+      <h6>Outside Commands</h6>
+      <a class="waves-effect waves-light btn" onclick="createNewOC()">Create item</a>
+      <div id="Ocommands">
+        <div class="row"></div>
+          <div class="input-field col s6">
+            <input id="command" name="OCommand">
+            <label for="command">Outside Command</label>
+          </div>
+          
+      </div>
+    </div>
+
+    <div id="items">
+      <h1>Items</h1>
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">filter_drama</i>First
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">place</i>Second
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">whatshot</i>Third
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+  <button class="btn waves-effect waves-light" type="submit" name="action">Create Panel
+    <i class="material-icons right">save_as</i>
+  </button>
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    M.AutoInit();
+  </script>
+</body>
+
+<footer>
+
+    <div style="margin-left: 75%;">
+    <i class="material-icons">copyright</i> CopyRight 2022 - Jonathan_Nathan</div>
+</footer>
