@@ -23,7 +23,7 @@
         }
     document.onsubmit = function () {
         let title = document.getElementById("title")
-        let name = document.getElementById("name")
+        let name = document.getElementById("panel-name")
         let rows = document.getElementById("rows")
         let perm = document.getElementById("perm")
         let refdelay = document.getElementById("refresh-delay")
@@ -72,30 +72,40 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
 
     function createNewOC() {
       var element = document.getElementById("Ocommands");
+      let outsidecmds = document.getElementsByName("OCommand")
       element.insertAdjacentHTML(
         "beforeend",
-        '<div class="row"></div><div class="input-field col s6"><input id="command" name="OCommand"><label for="command">Outside Command</label></div>'
+        `<div class="row"></div><div class="input-field col s6"><input id="command${outsidecmds.length+1}" name="OCommand"><label for="command${outsidecmds.length+1}">Outside Command</label></div>`
       );
     }
-    function lol() {
+    function CreateItem() {
       var element = document.getElementsByClassName("collapsible")[0];
       element.insertAdjacentHTML(
         "beforeend",
-        '<li><div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div><div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div></li>'
+        '<li><div class="collapsible-header"><i class="material-icons">arrow_drop_down</i></div><div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div></li>'
       );
     }
   </script>
-  <a class="waves-effect waves-light btn" onclick="lol()">Create item</a>
+  
 
-  <input type="Button" value="Create item" onclick="lol()" />
-
+  <nav style="background-color: #0C9DC1;">
+    <div class="nav-wrapper">
+      <img class="responsive-img circle brand-logo center" style="height:100%;" src="https://commandpanels.com/data/assets/logo/cpBannerNoSubtitle.png">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="https://commandpanels.com/">Home</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+        
   <form style="margin-left: 15%; margin-right: 15%">
     <div id="settings">
       <h1>Settings</h1>
       <div class="row">
         <div class="input-field col s6">
-          <input id="name" required class="validate" type="text" /><label
-            for="name"
+          <input id="panel-name" class="validate" type="text" /><label
+            for="panel-name"
             >Panel Name</label
           >
         </div>
@@ -170,11 +180,11 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
         <div class="row"></div>
         <div class="input-field col s6">
           <textarea id="input" class="materialize-textarea"></textarea
-          ><label for="input">Permission</label>
+          ><label for="input">Input</label>
         </div>
       </div>
       <h6>Outside Commands</h6>
-      <a class="waves-effect waves-light btn" onclick="createNewOC()">Create item</a>
+      <a class="waves-effect waves-light btn" onclick="createNewOC()">Create Command</a>
       <div id="Ocommands">
         <div class="row"></div>
           <div class="input-field col s6">
@@ -187,29 +197,88 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
 
     <div id="items">
       <h1>Items</h1>
+      <h6>EG "Slot 1" THIS IS NOT THE ACTUAL SLOT NUMBER It will be used as the id for the slot</h6>
+      <a class="waves-effect waves-light btn" onclick="CreateItem()">Create item</a>
       <ul class="collapsible">
         <li>
           <div class="collapsible-header">
-            <i class="material-icons">filter_drama</i>First
+            <i class="material-icons">arrow_drop_down</i>Slot 1
           </div>
           <div class="collapsible-body">
-            <span>Lorem ipsum dolor sit amet.</span>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">place</i>Second
-          </div>
-          <div class="collapsible-body">
-            <span>Lorem ipsum dolor sit amet.</span>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">whatshot</i>Third
-          </div>
-          <div class="collapsible-body">
-            <span>Lorem ipsum dolor sit amet.</span>
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="item-1-item-name"  class="validate" type="text" /><label
+                  for="item-1-item-name"
+                  >Item Name</label
+                >
+              </div>
+              <div class="input-field col s6">
+                <input id="item-1-item-material" required class="validate" type="text" /><label
+                  for="item-1-item-material"
+                  >Item Material</label
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <h6>Item Types(s)</h6>
+                <br />
+                <p style="display: flex; justify-content: space-evenly">
+                  <label>
+                    <input type="checkbox" value="placeable" class="item-type1"/>
+                    <span>placeable</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="noAttributes" class="item-type1"/>
+                    <span>noAttributes</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="noNBT" class="item-type1"/>
+                    <span>noNBT</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="dropItem" class="item-type1"/>
+                    <span>dropItem</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="removeItem" class="item-type1"/>
+                    <span>removeItem</span>
+                  </label>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s2">
+                <input id="item-1-item-id"  class="validate" type="text" /><label
+                  for="item-1-item-id"
+                  >Item ID</label
+                >
+              </div>
+              <div class="input-field col s2">
+                <input id="item-1-item-stack" class="validate" type="text" /><label
+                  for="item-1-item-stack"
+                  >Item Stack</label
+                >
+              </div>
+              <div class="input-field col s3">
+                <input id="item-1-item-data" class="validate" type="text" /><label
+                  for="item-1-item-data"
+                  >Custom data</label
+                >
+              </div>
+              <div class="input-field col s3">
+                <input id="item-1-item-damage" class="validate" type="text" /><label
+                  for="item-1-item-damage"
+                  >Item Damage</label
+                >
+              </div>
+              <div class="input-field col s2">
+                <input id="item-1-item-damage" class="validate" type="text" /><label
+                  for="item-1-item-damage"
+                  >Item Damage</label
+                >
+              </div>
+            </div> 
           </div>
         </li>
       </ul>
