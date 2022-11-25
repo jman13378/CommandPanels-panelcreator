@@ -151,17 +151,205 @@ function createNewOC() {
 }
 function CreateItem() {
   // create a new item
+  let id = document.getElementsByClassName('collapsible')[0].children.length+1
   var element = document.getElementsByClassName("collapsible")[0];
   element.insertAdjacentHTML(
     "beforeend",
     `<li>
-        <div class="collapsible-header">
-            <i class="material-icons">arrow_drop_down</i>
+    <div class="collapsible-header">
+      <i class="material-icons">arrow_drop_down</i>Slot ${id}
+    </div>
+    <div class="collapsible-body">
+      <div class="row">
+        <div class="input-field col s2">
+          <input
+            required
+            id="item-${id}-item-slot"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-slot">Item Slot</label>
         </div>
-        <div class="collapsible-body">
-            <span>Lorem ipsum dolor sit amet.</span>
+        <div class="input-field col s5">
+          <input
+            id="item-${id}-item-name"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-name">Item Name</label>
         </div>
-    </li>`
+        <div class="input-field col s5">
+          <input
+            id="item-${id}-item-material"
+            required
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-material">Item Material</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <h6>Item Types(s)</h6>
+          <br />
+          <p style="display: flex; justify-content: space-evenly">
+            <label>
+              <input
+                type="checkbox"
+                value="placeable"
+                class="item-type1"
+              />
+              <span>placeable</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="noAttributes"
+                class="item-type1"
+              />
+              <span>noAttributes</span>
+            </label>
+            <label>
+              <input type="checkbox" value="noNBT" class="item-type1" />
+              <span>noNBT</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="dropItem"
+                class="item-type1"
+              />
+              <span>dropItem</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="removeItem"
+                class="item-type1"
+              />
+              <span>removeItem</span>
+            </label>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+          <input id="item-${id}-item-id" class="validate" type="text" /><label
+            for="item-${id}-item-id"
+            >Item ID</label
+          >
+        </div>
+        <div class="input-field col s2">
+          <input
+            id="item-${id}-item-stack"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-stack">Item Stack</label>
+        </div>
+        <div class="input-field col s3">
+          <input
+            id="item-${id}-item-data"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-data">Custom data</label>
+        </div>
+        <div class="input-field col s3">
+          <input
+            id="item-${id}-item-damage"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-damage">Item Damage</label>
+        </div>
+        <div class="input-field col s2">
+          <input
+            id="item-${id}-item-damage"
+            class="validate"
+            type="text"
+          /><label for="item-${id}-item-damage">Item Damage</label>
+        </div>
+      </div>
+      <h6>Enchantments</h6>
+      <a
+        class="waves-effect waves-light btn"
+        onclick="createNewEnchant(${id})"
+        >Create Enchant</a
+      >
+      <div class="row">
+        <div class="input-field col s2">
+          <label>
+
+            <input
+              type="checkbox"
+              name="item-enchantEnabled-${id}"
+              id="item-enchantEnabled-${id}"
+              onclick="enchantment(this)"
+            />
+            <span>Enabled</span>
+          </label>
+        </div>
+
+        <div class="input-field col s7 item-enchants-${id}">
+          <select
+            required
+            onchange="setLevels(this)"
+            name="item-enchant-${id}"
+            class="browser-default"
+            id="item-enchant-${id}-1"
+          >
+            <option value="" disabled selected>
+              Choose An Enchantment
+            </option>
+            <option value="1">Efficiency</option>
+            <option value="2">Silk Touch</option>
+            <option value="3">Unbreaking</option>
+            <option value="4">Fortune</option>
+            <option value="5">Luck of the sea</option>
+            <option value="6">Lure</option>
+            <option value="7">Mending</option>
+            <option value="8">Curse of Vanishing</option>
+            <option value="9">Protection</option>
+            <option value="10">Fire Protection</option>
+            <option value="11">Feather Falling</option>
+            <option value="12">Blast Protection</option>
+            <option value="13">Projectile Protection</option>
+            <option value="14">Respiration</option>
+            <option value="15">Aqua Affinity</option>
+            <option value="16">Thorns</option>
+            <option value="17">Depth Strider</option>
+            <option value="18">Frost Walker</option>
+            <option value="19">Curse of Binding</option>
+            <option value="20">Soul Speed</option>
+            <option value="21">Sharpness</option>
+            <option value="22">Smite</option>
+            <option value="23">Bang of Arthropods</option>
+            <option value="24">KnockBack</option>
+            <option value="25">Fire Aspect</option>
+            <option value="26">Looting</option>
+            <option value="27">Sweeping Edge</option>
+            <option value="28">Power</option>
+            <option value="29">Punch</option>
+            <option value="30">Flame</option>
+            <option value="31">Infinity</option>
+            <option value="32">Loyalty</option>
+            <option value="33">Impaling</option>
+            <option value="34">Riptide</option>
+            <option value="35">Channeling</option>
+            <option value="36">Multishot</option>
+            <option value="37">Quick Charge</option>
+            <option value="38">Piercing</option>
+            <option value="39">Curse of Vanishing</option>
+          </select>
+        </div>
+        <div class="input-field col s3 item-enchantLevels-${id}">
+          <select
+            required
+            class="browser-default"
+            name="item-enchantLevel-${id}"
+            id="item-enchantLevel-${id}-1"
+          >
+            <option value="" disabled selected>Choose a level</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </li>`
   );
 }
 
