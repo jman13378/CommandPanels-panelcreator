@@ -1,5 +1,4 @@
 <head>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -50,12 +49,8 @@
       </ul>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li>
-          <a
-            href=""
-            >Custom Items and Has Sections coming soon!</a
-          >
+          <a href="">Custom Items and Has Sections coming soon!</a>
         </li>
-
       </ul>
     </div>
   </nav>
@@ -230,7 +225,8 @@
           <div class="collapsible-body">
             <div class="row">
               <div class="input-field col s2">
-                <input required
+                <input
+                  required
                   id="item-1-item-slot"
                   class="validate"
                   type="text"
@@ -333,29 +329,44 @@
               </div>
             </div>
             <h6>Enchantments</h6>
-            <a class="waves-effect waves-light btn" onclick="createNewEnchant(1)"
-            >Create Enchant</a>
+            <a
+              class="waves-effect waves-light btn"
+              onclick="createNewEnchant(1)"
+              >Create Enchant</a
+            >
             <div class="row">
               <div class="input-field col s2">
                 <label>
                   <script>
                     function enchantment(s) {
+                      let id = s.name.replace("item-enchantEnabled-", "");
                       if (s.checked) {
-                        let id = s.name.replace("item-enchantEnabled-", "");
-                        document
-                          .getElementById(`item-enchantLevel-${id}`)
-                          .setAttribute("disabled", "");
-                        document
-                          .getElementById(`item-enchant-${id}`)
-                          .setAttribute("disabled", "");
+                        
+                        let enchants = document.getElementsByClassName(`item-enchants-${id}`)
+                        let enchant = document.getElementsByClassName(`item-enchantLevels-${id}`)
+                        for (let i = 0; i < enchants.length;i++) {
+                          for (let e = 0; e < enchants[i].children.length; e++) {
+                            enchants[i].children[e].setAttribute("disabled", "");
+                          }
+                        }
+                        for (let i = 0; i < enchant.length;i++) {
+                          for (let e = 0; e < enchant[i].children.length; e++) {
+                            enchant[i].children[e].setAttribute("disabled", "");
+                          }
+                        }
                       } else {
-                        let id = s.name.replace("item-enchantEnabled-", "");
-                        document
-                          .getElementById(`item-enchantLevel-${id}`)
-                          .removeAttribute("disabled");
-                        document
-                          .getElementById(`item-enchant-${id}`)
-                          .removeAttribute("disabled");
+                        let enchants = document.getElementsByClassName(`item-enchants-${id}`)
+                        let enchant = document.getElementsByClassName(`item-enchantLevels-${id}`)
+                        for (let i = 0; i < enchants.length;i++) {
+                          for (let e = 0; e < enchants[i].children.length; e++) {
+                            enchants[i].children[e].removeAttribute("disabled");
+                          }
+                        }
+                        for (let i = 0; i < enchant.length;i++) {
+                          for (let e = 0; e < enchant[i].children.length; e++) {
+                            enchant[i].children[e].removeAttribute("disabled");
+                          }
+                        }
                       }
                     }
                   </script>
@@ -368,9 +379,15 @@
                   <span>Enabled</span>
                 </label>
               </div>
-              
-              <div id="item-enchants-1" class="input-field col s7">
-                <select required onchange="setLevels(this)" name="item-enchant-1" class="browser-default" id="item-enchant-1-1">
+
+              <div class="input-field col s7 item-enchants-1">
+                <select
+                  required
+                  onchange="setLevels(this)"
+                  name="item-enchant-1"
+                  class="browser-default"
+                  id="item-enchant-1-1"
+                >
                   <option value="" disabled selected>
                     Choose An Enchantment
                   </option>
@@ -415,8 +432,13 @@
                   <option value="39">Curse of Vanishing</option>
                 </select>
               </div>
-              <div class="input-field col s3">
-                <select required class="browser-default" name="item-enchantLevel-1" id="item-enchantLevel-1-1">
+              <div class="input-field col s3 item-enchantLevels-1">
+                <select
+                  required
+                  class="browser-default"
+                  name="item-enchantLevel-1"
+                  id="item-enchantLevel-1-1"
+                >
                   <option value="" disabled selected>Choose a level</option>
                 </select>
               </div>
