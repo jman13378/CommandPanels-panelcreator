@@ -1,4 +1,5 @@
 <head>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -12,98 +13,64 @@
   />
 </head>
 <body>
-  <script>
-          function SaveAsFile(t,f,m) {
-            try {
-                var b = new Blob([t],{type:m});
-                saveAs(b, f);
-            } catch (e) {
-                window.open("data:"+m+"," + encodeURIComponent(t), '_blank','');
-            }
-        }
-    document.onsubmit = function () {
-        let title = document.getElementById("title")
-        let name = document.getElementById("panel-name")
-        let rows = document.getElementById("rows")
-        let perm = document.getElementById("perm")
-        let refdelay = document.getElementById("refresh-delay")
-        let opensound = document.getElementById("sound-on-open")
-        let paneltype = document.getElementsByClassName("panel-type")
-        let permmsg = document.getElementById("permission")
-        let outsidecmds = document.getElementsByName("OCommand")
-        let inputmsg = document.getElementById("input")
-        
-let finaltext =
+  <script src="js/buttons.js"></script>
 
-`panels:\n`+
-`  ${name.value}:\n`+
-`    title: "${title.value}"\n`+
-`    rows: ${rows.value}\n`;
-if (perm==undefined) {
-    finaltext=finaltext.concat(`\n    perm: default`)
-} else {
-    finaltext=finaltext.concat(`\n    perm: ${perm.value}`)
-}
-if (refdelay.value!=undefined) finaltext=finaltext.concat(`\n    refresh-delay: ${refdelay.value}`);
-if (opensound.value!=undefined) finaltext=finaltext.concat(`\n    sound-on-open: ${opensound.value}`);
-if (paneltype.length!=0) {
-    finaltext=finaltext.concat(`\n    panelType:`);
-    for (let i = 0; i < paneltype.length;i++) {
-        finaltext=finaltext.concat(`\n    - ${paneltype[i].value}`);
-    }
-} 
-if (outsidecmds.length!=0) {
-    finaltext=finaltext.concat(`\n    outside-commands:`);
-    for (let i = 0; i < outsidecmds.length;i++) {
-        finaltext=finaltext.concat(`\n    - ${outsidecmds[i].value}`);
-    }
-} 
-if (outsidecmds.length!=0) {
-    finaltext=finaltext.concat(`\n    outside-commands:`);
-    for (let i = 0; i < outsidecmds.length;i++) {
-        finaltext=finaltext.concat(`\n    - ${outsidecmds[i].value}`);
-    }
-} 
-window.alert(finaltext)
-SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
-    
-    }
-
-
-    function createNewOC() {
-      var element = document.getElementById("Ocommands");
-      let outsidecmds = document.getElementsByName("OCommand")
-      element.insertAdjacentHTML(
-        "beforeend",
-        `<div class="row"></div><div class="input-field col s6"><input id="command${outsidecmds.length+1}" name="OCommand"><label for="command${outsidecmds.length+1}">Outside Command</label></div>`
-      );
-    }
-    function CreateItem() {
-      var element = document.getElementsByClassName("collapsible")[0];
-      element.insertAdjacentHTML(
-        "beforeend",
-        '<li><div class="collapsible-header"><i class="material-icons">arrow_drop_down</i></div><div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div></li>'
-      );
-    }
-  </script>
-  
-
-  <nav style="background-color: #0C9DC1; position: fixed; top: 0px;">
+  <nav style="background-color: #0c9dc1; position: fixed; top: 0px">
     <div class="nav-wrapper">
-      <img class="responsive-img circle brand-logo center" style="height:100%;" src="https://commandpanels.com/data/assets/logo/cpBannerNoSubtitle.png">
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <img
+        class="responsive-img circle brand-logo center"
+        style="height: 100%"
+        src="https://commandpanels.com/data/assets/logo/cpBannerNoSubtitle.png"
+      />
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="https://commandpanels.com/">Home</a></li>
-        <li><a href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki">Wiki</a></li>
-        <li><a href="https://www.spigotmc.org/resources/command-panels-custom-guis.67788/">Spigot</a></li>
-        <li><a href="https://github.com/rockyhawk64/CommandPanels/releases/latest/download/CommandPanels.jar">Download</a></li>
+        <li>
+          <a href="https://bstats.org/plugin/bukkit/CommandPanels/5097"
+            >Stats</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki"
+            >Wiki</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.spigotmc.org/resources/command-panels-custom-guis.67788/"
+            >Spigot</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/rockyhawk64/CommandPanels/releases/latest/download/CommandPanels.jar"
+            >Download</a
+          >
+        </li>
+      </ul>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li>
+          <a
+            href=""
+            >Custom Items and Has Sections coming soon!</a
+          >
+        </li>
+
       </ul>
     </div>
   </nav>
-        
-  <form style="margin-left: 15%; margin-right: 15%; margin-top: 10%;">
+
+  <form style="margin-left: 15%; margin-right: 15%; margin-top: 10%">
     <div id="settings">
       <h1>Panel Settings</h1>
-      <h5>View <a href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings">this</a> for all of the settings!</h5>
+      <h5>
+        View
+        <a
+          href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings"
+          >this</a
+        >
+        for all of the settings!
+      </h5>
       <div class="row">
         <div class="input-field col s6">
           <input id="panel-name" class="validate" type="text" /><label
@@ -138,44 +105,57 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
           >
         </div>
         <div class="input-field col s3">
-            <input id="perm" type="text" class="validate" /><label
-              for="perm"
-              >Open Perm</label
-            >
-          </div>
+          <input id="perm" type="text" class="validate" /><label for="perm"
+            >Open Perm</label
+          >
+        </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <h5>Panel Type(s)</h5>
-          View <a href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings#panel-type">this</a> for info on what these are!
+          View
+          <a
+            href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings#panel-type"
+            >this</a
+          >
+          for info on what these are!
           <br />
           <p style="display: flex; justify-content: space-evenly">
             <label>
-              <input type="checkbox" value="static" class="panel-type"/>
+              <input type="checkbox" value="static" class="panel-type" />
               <span>static</span>
             </label>
             <label>
-              <input type="checkbox" value="nocommand" class="panel-type"/>
+              <input type="checkbox" value="nocommand" class="panel-type" />
               <span>nocommand</span>
             </label>
             <label>
-              <input type="checkbox" value="nocommandregister" class="panel-type"/>
+              <input
+                type="checkbox"
+                value="nocommandregister"
+                class="panel-type"
+              />
               <span>nocommandregister</span>
             </label>
             <label>
-              <input type="checkbox" value="unmovable" class="panel-type"/>
+              <input type="checkbox" value="unmovable" class="panel-type" />
               <span>unmovable</span>
             </label>
             <label>
-              <input type="checkbox" value="unclosable" class="panel-type"/>
+              <input type="checkbox" value="unclosable" class="panel-type" />
               <span>unclosable</span>
             </label>
           </p>
         </div>
       </div>
       <h5>Custom Messages</h5>
-      View <a href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings#custom-messages">this</a> for info on what these are!
+      View
+      <a
+        href="https://rockyhawk99.gitbook.io/rockyhawk-wiki/commandpanels/wiki/panel-editing/panel-settings#custom-messages"
+        >this</a
+      >
+      for info on what these are!
       <div class="row">
         <div class="input-field col s6">
           <textarea id="permission" class="materialize-textarea"></textarea
@@ -188,21 +168,60 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
         </div>
       </div>
       <h6>Outside Commands</h6>
-      <a class="waves-effect waves-light btn" onclick="createNewOC()">Create Command</a>
+      <a class="waves-effect waves-light btn" onclick="createNewOC()"
+        >Create Command</a
+      >
       <div id="Ocommands">
         <div class="row"></div>
-          <div class="input-field col s6">
-            <input id="command" name="OCommand">
-            <label for="command">Outside Command</label>
-          </div>
-          
+        <div class="input-field col s6">
+          <input id="command" name="OCommand" />
+          <label for="command">Outside Command</label>
+        </div>
+      </div>
+      <h6>Pre-Load Commands</h6>
+      <a class="waves-effect waves-light btn" onclick="createNewPLC()"
+        >Create Command</a
+      >
+      <div id="PLcommands">
+        <div class="row"></div>
+        <div class="input-field col s6">
+          <input id="PLcommand" name="PLCommand" />
+          <label for="PLcommand">Pre-Load Command</label>
+        </div>
+      </div>
+      <h6>Commands on-open</h6>
+      <a class="waves-effect waves-light btn" onclick="createNewCOO()"
+        >Create Command</a
+      >
+      <div id="OOcommands">
+        <div class="row"></div>
+        <div class="input-field col s6">
+          <input id="OOcommand" name="OOCommand" />
+          <label for="OOcommand">Command-On-Open</label>
+        </div>
+      </div>
+      <h6>Commands on-close</h6>
+      <a class="waves-effect waves-light btn" onclick="createNewCOC()"
+        >Create Command</a
+      >
+      <div id="OCcommands">
+        <div class="row"></div>
+        <div class="input-field col s6">
+          <input id="OCcommand" name="OCCommand" />
+          <label for="OCcommand">Command-On-Close</label>
+        </div>
       </div>
     </div>
 
     <div id="items">
       <h1>Items</h1>
-      <h6>EG "Slot 1" THIS IS NOT THE ACTUAL SLOT NUMBER It will be used as the id for the slot</h6>
-      <a class="waves-effect waves-light btn" onclick="CreateItem()">Create item</a>
+      <h6>
+        EG "Slot 1" THIS IS NOT THE ACTUAL SLOT NUMBER It will be used as the id
+        for the slot
+      </h6>
+      <a class="waves-effect waves-light btn" onclick="CreateItem()"
+        >Create item</a
+      >
       <ul class="collapsible">
         <li>
           <div class="collapsible-header">
@@ -210,17 +229,27 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
           </div>
           <div class="collapsible-body">
             <div class="row">
-              <div class="input-field col s6">
-                <input id="item-1-item-name"  class="validate" type="text" /><label
-                  for="item-1-item-name"
-                  >Item Name</label
-                >
+              <div class="input-field col s2">
+                <input required
+                  id="item-1-item-slot"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-slot">Item Slot</label>
               </div>
-              <div class="input-field col s6">
-                <input id="item-1-item-material" required class="validate" type="text" /><label
-                  for="item-1-item-material"
-                  >Item Material</label
-                >
+              <div class="input-field col s5">
+                <input
+                  id="item-1-item-name"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-name">Item Name</label>
+              </div>
+              <div class="input-field col s5">
+                <input
+                  id="item-1-item-material"
+                  required
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-material">Item Material</label>
               </div>
             </div>
             <div class="row">
@@ -229,23 +258,39 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
                 <br />
                 <p style="display: flex; justify-content: space-evenly">
                   <label>
-                    <input type="checkbox" value="placeable" class="item-type1"/>
+                    <input
+                      type="checkbox"
+                      value="placeable"
+                      class="item-type1"
+                    />
                     <span>placeable</span>
                   </label>
                   <label>
-                    <input type="checkbox" value="noAttributes" class="item-type1"/>
+                    <input
+                      type="checkbox"
+                      value="noAttributes"
+                      class="item-type1"
+                    />
                     <span>noAttributes</span>
                   </label>
                   <label>
-                    <input type="checkbox" value="noNBT" class="item-type1"/>
+                    <input type="checkbox" value="noNBT" class="item-type1" />
                     <span>noNBT</span>
                   </label>
                   <label>
-                    <input type="checkbox" value="dropItem" class="item-type1"/>
+                    <input
+                      type="checkbox"
+                      value="dropItem"
+                      class="item-type1"
+                    />
                     <span>dropItem</span>
                   </label>
                   <label>
-                    <input type="checkbox" value="removeItem" class="item-type1"/>
+                    <input
+                      type="checkbox"
+                      value="removeItem"
+                      class="item-type1"
+                    />
                     <span>removeItem</span>
                   </label>
                 </p>
@@ -253,44 +298,138 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
             </div>
             <div class="row">
               <div class="input-field col s2">
-                <input id="item-1-item-id"  class="validate" type="text" /><label
+                <input id="item-1-item-id" class="validate" type="text" /><label
                   for="item-1-item-id"
                   >Item ID</label
                 >
               </div>
               <div class="input-field col s2">
-                <input id="item-1-item-stack" class="validate" type="text" /><label
-                  for="item-1-item-stack"
-                  >Item Stack</label
-                >
+                <input
+                  id="item-1-item-stack"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-stack">Item Stack</label>
               </div>
               <div class="input-field col s3">
-                <input id="item-1-item-data" class="validate" type="text" /><label
-                  for="item-1-item-data"
-                  >Custom data</label
-                >
+                <input
+                  id="item-1-item-data"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-data">Custom data</label>
               </div>
               <div class="input-field col s3">
-                <input id="item-1-item-damage" class="validate" type="text" /><label
-                  for="item-1-item-damage"
-                  >Item Damage</label
-                >
+                <input
+                  id="item-1-item-damage"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-damage">Item Damage</label>
               </div>
               <div class="input-field col s2">
-                <input id="item-1-item-damage" class="validate" type="text" /><label
-                  for="item-1-item-damage"
-                  >Item Damage</label
-                >
+                <input
+                  id="item-1-item-damage"
+                  class="validate"
+                  type="text"
+                /><label for="item-1-item-damage">Item Damage</label>
               </div>
-            </div> 
+            </div>
+            <h6>Enchantments</h6>
+            <a class="waves-effect waves-light btn" onclick="createNewEnchant(1)"
+            >Create Enchant</a>
+            <div class="row">
+              <div class="input-field col s2">
+                <label>
+                  <script>
+                    function enchantment(s) {
+                      if (s.checked) {
+                        let id = s.name.replace("item-enchantEnabled-", "");
+                        document
+                          .getElementById(`item-enchantLevel-${id}`)
+                          .setAttribute("disabled", "");
+                        document
+                          .getElementById(`item-enchant-${id}`)
+                          .setAttribute("disabled", "");
+                      } else {
+                        let id = s.name.replace("item-enchantEnabled-", "");
+                        document
+                          .getElementById(`item-enchantLevel-${id}`)
+                          .removeAttribute("disabled");
+                        document
+                          .getElementById(`item-enchant-${id}`)
+                          .removeAttribute("disabled");
+                      }
+                    }
+                  </script>
+                  <input
+                    type="checkbox"
+                    name="item-enchantEnabled-1"
+                    id="item-enchantEnabled-1"
+                    onclick="enchantment(this)"
+                  />
+                  <span>Enabled</span>
+                </label>
+              </div>
+              
+              <div id="item-enchants-1" class="input-field col s7">
+                <select required onchange="setLevels(this)" name="item-enchant-1" class="browser-default" id="item-enchant-1-1">
+                  <option value="" disabled selected>
+                    Choose An Enchantment
+                  </option>
+                  <option value="1">Efficiency</option>
+                  <option value="2">Silk Touch</option>
+                  <option value="3">Unbreaking</option>
+                  <option value="4">Fortune</option>
+                  <option value="5">Luck of the sea</option>
+                  <option value="6">Lure</option>
+                  <option value="7">Mending</option>
+                  <option value="8">Curse of Vanishing</option>
+                  <option value="9">Protection</option>
+                  <option value="10">Fire Protection</option>
+                  <option value="11">Feather Falling</option>
+                  <option value="12">Blast Protection</option>
+                  <option value="13">Projectile Protection</option>
+                  <option value="14">Respiration</option>
+                  <option value="15">Aqua Affinity</option>
+                  <option value="16">Thorns</option>
+                  <option value="17">Depth Strider</option>
+                  <option value="18">Frost Walker</option>
+                  <option value="19">Curse of Binding</option>
+                  <option value="20">Soul Speed</option>
+                  <option value="21">Sharpness</option>
+                  <option value="22">Smite</option>
+                  <option value="23">Bang of Arthropods</option>
+                  <option value="24">KnockBack</option>
+                  <option value="25">Fire Aspect</option>
+                  <option value="26">Looting</option>
+                  <option value="27">Sweeping Edge</option>
+                  <option value="28">Power</option>
+                  <option value="29">Punch</option>
+                  <option value="30">Flame</option>
+                  <option value="31">Infinity</option>
+                  <option value="32">Loyalty</option>
+                  <option value="33">Impaling</option>
+                  <option value="34">Riptide</option>
+                  <option value="35">Channeling</option>
+                  <option value="36">Multishot</option>
+                  <option value="37">Quick Charge</option>
+                  <option value="38">Piercing</option>
+                  <option value="39">Curse of Vanishing</option>
+                </select>
+              </div>
+              <div class="input-field col s3">
+                <select required class="browser-default" name="item-enchantLevel-1" id="item-enchantLevel-1-1">
+                  <option value="" disabled selected>Choose a level</option>
+                </select>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
     </div>
-    
-  <button class="btn waves-effect waves-light" type="submit" name="action">Create Panel
-    <i class="material-icons right">save_as</i>
-  </button>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+      Create Panel
+      <i class="material-icons right">save_as</i>
+    </button>
   </form>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
@@ -299,7 +438,7 @@ SaveAsFile(finaltext,`${name.value}.yml`,"text/plain;charset=utf-8")
 </body>
 
 <footer>
-
-    <div style="margin-left: 75%;">
-    <i class="material-icons">copyright</i> CopyRight 2022 - Jonathan_Nathan</div>
+  <div style="margin-left: 75%">
+    <i class="material-icons">copyright</i> CopyRight 2022 - Jonathan_Nathan
+  </div>
 </footer>
